@@ -10,9 +10,9 @@ original_img_color=cv2.imread("basma.jpeg")
 original_img=cv2.cvtColor(original_img_color, cv2.COLOR_BGR2GRAY)
 plt.imshow(original_img, cmap="gray")
 plt.show()
+
 ###############################################
 #threshold
-
 img=original_img.copy()
 ret,thresh_obj = cv2.threshold(img,140,230,cv2.THRESH_BINARY)
 
@@ -25,12 +25,14 @@ plt.show()
 plt.imshow(thresh_obj)
 plt.show()
 
+
 #detect the body contour 
 max_cnt=contours[0]
 for c in contours:
     if cv2.contourArea(c) > cv2.contourArea(max_cnt):
         max_cnt=c
 cv2.contourArea(max_cnt)
+
 
 # centroids of body
 M1 = cv2.moments(max_cnt)
@@ -126,4 +128,3 @@ plt.show()
 # Save output image
 image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 cv2.imwrite('output1.png',image)
-
