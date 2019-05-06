@@ -1,5 +1,5 @@
 # BARMS Virtual fitting room application
-Application help people in shopping instead of wearing the clothes, the APP doing that for you.
+Android Application that helps people in shopping instead of wearing the clothes, the APP will show the user their picture wearing them.
 
 ## Implementation
--Image processing part implemented using python and openCV.
+-Image processing implemented using python openCV.
