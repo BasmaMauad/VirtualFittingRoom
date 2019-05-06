@@ -22,14 +22,8 @@ contours, hierarchy= cv2.findContours(blur,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE
 plt.imshow((cv2.drawContours(img2, contours, -1, (255,0,0), 1)))
 plt.show()
 
-
-
-
 plt.imshow(thresh_obj)
 plt.show()
-
-
-
 
 #detect the body contour 
 max_cnt=contours[0]
@@ -37,9 +31,6 @@ for c in contours:
     if cv2.contourArea(c) > cv2.contourArea(max_cnt):
         max_cnt=c
 cv2.contourArea(max_cnt)
-
-
-
 
 # centroids of body
 M1 = cv2.moments(max_cnt)
@@ -53,12 +44,6 @@ x,y,w,h = cv2.boundingRect(max_cnt)
 # resize the clothes
 s_img_color = cv2.imread("max-mara-Black-Drawstring-Shirt-Dress.jpeg")  
 s_img=cv2.cvtColor(s_img_color, cv2.COLOR_BGR2GRAY)
-
-# s_img=cv2.resize(s_img,(int(w-80),int(w-80))) #chemise
-# s_img=cv2.resize(s_img,(int(w/1.16),int(w/1.16))) #final chemise
-
-# s_img=cv2.resize(s_img,(int(w/1.16),int(h/1.16)) )  #dress
-
 
 #Find contour of chemise
 ret,thresh_obj = cv2.threshold(s_img,200,100,cv2.THRESH_BINARY)
@@ -91,11 +76,30 @@ if cloth_type=="0": #top
     y_offset= y1+h1
     x_offset=abs((x+(w/2))-(x1+ (w1/2))) + (w/w1)*10
 
-# x_offset=abs((x+(w/2))-(x1+ (w1/2)))
 if cloth_type=="1":#dress
     y_offset= y1+h1 +20
     x_offset=abs((x+(w/2))-(x1+ (w1/2)))  - (w/w1)*10
 
-#x_offset=abs((x+w/2)-(x_ch+ w_ch/2))
+##########################################################
+#add alpha channel to clothes
+s_img=s_img_color.copy()
+s_img = cv2.cvtColor(s_img, cv2.COLOR_BGR2RGBA)
+bg_color = s_img[0][0]
+mask = np.all(s_img == bg_color, axis=2)
+s_img[mask] = [0, 0, 0, 0]
+plt.imshow(s_img)
+plt.show()
 
-#######################################################
+##########################################################
+# Resize clothes image
+if cloth_type=="0":
+    s_img=cv2.resize(s_img,(int(w/1.16),int(w/1.16))) # Top
+if cloth_type=="1":
+    s_img=cv2.resize(s_img,(int(w*1.2),int(h-(y1+h1)))) #chemise
+
+x_ch,y_ch,w_ch,h_ch = cv2.boundingRect(contours_chemise[0])
+
+plt.imshow(s_img)
+plt.show()
+
+
