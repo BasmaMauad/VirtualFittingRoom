@@ -102,4 +102,28 @@ x_ch,y_ch,w_ch,h_ch = cv2.boundingRect(contours_chemise[0])
 plt.imshow(s_img)
 plt.show()
 
+###########################################################
+# add alpha channel to BODY
+image=original_img_color.copy()
+image = cv2.cvtColor(image, cv2.COLOR_BGR2RGBA)
+bg_color = image[0][0]
+mask = np.all(image == bg_color, axis=2)
+image[mask] = [0, 0, 0, 0]
+
+a,b,c=s_img.shape
+
+############################################################
+# remove background from clothes image then put it on body image
+for i in range(0, a):
+    for j in range(0, b):
+
+        if s_img[i, j][3] != 0:
+            image[int(y_offset) + i , int(x_offset)+ j] = s_img[i, j]
+
+plt.imshow(image)
+plt.show()
+
+# Save output image
+image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+cv2.imwrite('output1.png',image)
 
