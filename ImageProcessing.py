@@ -83,3 +83,19 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 x1,y1,w1,h1 = faces[0]
+
+
+#######################################################
+#calculate offset to position clothes on body
+if cloth_type=="0": #top
+    y_offset= y1+h1
+    x_offset=abs((x+(w/2))-(x1+ (w1/2))) + (w/w1)*10
+
+# x_offset=abs((x+(w/2))-(x1+ (w1/2)))
+if cloth_type=="1":#dress
+    y_offset= y1+h1 +20
+    x_offset=abs((x+(w/2))-(x1+ (w1/2)))  - (w/w1)*10
+
+#x_offset=abs((x+w/2)-(x_ch+ w_ch/2))
+
+#######################################################
