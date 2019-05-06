@@ -10,7 +10,7 @@ original_img_color=cv2.imread("basma.jpeg")
 original_img=cv2.cvtColor(original_img_color, cv2.COLOR_BGR2GRAY)
 plt.imshow(original_img, cmap="gray")
 plt.show()
-
+###############################################
 #threshold
 
 img=original_img.copy()
@@ -50,3 +50,31 @@ centroid_x1 = int(M1['m10']/M1['m00'])
 centroid_y1 = int(M1['m01']/M1['m00'])
 
 x,y,w,h = cv2.boundingRect(max_cnt)
+
+##############################################
+# resize the clothes
+s_img_color = cv2.imread("max-mara-Black-Drawstring-Shirt-Dress.jpeg")  
+s_img=cv2.cvtColor(s_img_color, cv2.COLOR_BGR2GRAY)
+
+# s_img=cv2.resize(s_img,(int(w-80),int(w-80))) #chemise
+# s_img=cv2.resize(s_img,(int(w/1.16),int(w/1.16))) #final chemise
+
+# s_img=cv2.resize(s_img,(int(w/1.16),int(h/1.16)) )  #dress
+
+
+#Find contour of chemise
+ret,thresh_obj = cv2.threshold(s_img,200,100,cv2.THRESH_BINARY)
+blur=cv2.blur(thresh_obj,(9,9))
+contours_chemise, hierarchy= cv2.findContours(blur,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+len(contours_chemise)
+
+#centroids of chemise
+M = cv2.moments(contours_chemise[0])
+
+centroid_x = int(M['m10']/M['m00'])
+centroid_y = int(M['m01']/M['m00'])
+
+plt.imshow(thresh_obj, cmap="gray")
+plt.show()
+
+#####################################################3
