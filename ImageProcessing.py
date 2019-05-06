@@ -75,4 +75,11 @@ centroid_y = int(M['m01']/M['m00'])
 plt.imshow(thresh_obj, cmap="gray")
 plt.show()
 
-#####################################################3
+#####################################################
+
+#face detecton using haar cascade
+img = original_img_color.copy()
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_alt.xml')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+x1,y1,w1,h1 = faces[0]
