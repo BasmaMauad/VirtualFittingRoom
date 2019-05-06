@@ -23,14 +23,13 @@ plt.imshow((cv2.drawContours(img2, contours, -1, (255,0,0), 1)))
 plt.show()
 
 
-# In[5]:
 
 
 plt.imshow(thresh_obj)
 plt.show()
 
 
-# In[6]:
+
 
 #detect the body contour 
 max_cnt=contours[0]
@@ -40,7 +39,6 @@ for c in contours:
 cv2.contourArea(max_cnt)
 
 
-# In[7]:
 
 
 # centroids of body
