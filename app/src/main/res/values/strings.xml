@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BARMS</string>
+    <string name="apply">Apply</string>
+    <string name="todo">TODO</string>
+    <string name="clothes_list">Clothes List</string>
+    <string name="take_photo">Take photo</string>
+    <string name="customer">CUSTOMER</string>
+    <string name="store">STORE</string>
+</resources>

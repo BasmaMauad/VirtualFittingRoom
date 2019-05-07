@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customer">
+
+
+    <Button
+        android:id="@+id/customerButton"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="349dp"
+        android:onClick="launchCamera"
+        android:text="@string/take_photo" />
+
+    <ImageView
+        android:id="@+id/customerImageView"
+        android:layout_width="285dp"
+        android:layout_height="294dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginRight="62dp"
+        app:srcCompat="@color/colorPrimary"
+        android:contentDescription="@string/todo" />
+
+    <Button
+        android:id="@+id/btnList"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="-20dp"
+        android:layout_marginTop="470dp"
+        android:text="@string/clothes_list" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="166dp"
+        android:layout_marginRight="166dp"
+        android:layout_marginBottom="67dp"
+        android:text="@string/apply" />
+</RelativeLayout>
